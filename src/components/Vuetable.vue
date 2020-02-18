@@ -91,14 +91,7 @@
             </transition>
           </template>
         </template>
-        <template v-if="displayLoader">
-          <tr>
-            <td :colspan="countVisibleFields">
-              <slot name="loader"/>
-            </td>
-          </tr>
-        </template>
-        <template v-else-if="displayEmptyDataRow">
+        <template v-if="displayEmptyDataRow">
           <tr>
             <td :colspan="countVisibleFields"
               class="vuetable-empty-result">
@@ -324,10 +317,6 @@ export default {
       default() {
         return 'vuetable:'
       }
-    },
-    loading: {
-      default: false,
-      type: Boolean
     }
   },
 
@@ -374,9 +363,6 @@ export default {
     },
     displayEmptyDataRow () {
       return this.countTableData === 0 && this.noDataTemplate.length > 0
-    },
-    displayLoader() {
-      return this.loading && this.isFieldSlot('loader')
     },
     lessThanMinRows () {
       if (this.tableData === null || this.tableData.length === 0) {
